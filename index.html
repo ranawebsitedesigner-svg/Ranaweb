@@ -331,9 +331,7 @@ class="w-full h-full object-cover object-top"
 class="portfolio-overlay absolute inset-0 bg-primary/80 flex items-center justify-center p-6"
 >
 <div class="text-center text-white">
-<h3 class="text-xl font-semibold mb-2">
-Luxe Fashion E-commerce
-</h3>
+<h3 class="text-xl font-semibold mb-2">Luxe Fashion E-commerce</h3>
 <p class="mb-4">
 A premium online shopping experience with seamless checkout
 and personalized recommendations.
@@ -379,9 +377,7 @@ class="w-full h-full object-cover object-top"
 class="portfolio-overlay absolute inset-0 bg-primary/80 flex items-center justify-center p-6"
 >
 <div class="text-center text-white">
-<h3 class="text-xl font-semibold mb-2">
-FitTrack Mobile App
-</h3>
+<h3 class="text-xl font-semibold mb-2">FitTrack Mobile App</h3>
 <p class="mb-4">
 A comprehensive fitness tracking application with
 personalized workout plans and progress analytics.
@@ -2098,7 +2094,6 @@ window.addEventListener("scroll", highlightNavLink);
 highlightNavLink(); // Run once on page load
 });
 </script>
-
 <script id="view-all-work">
 document.addEventListener("DOMContentLoaded", function() {
 const viewAllBtn = document.getElementById('view-all-work');
@@ -2144,5 +2139,239 @@ portfolioGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 });
 </script>
+  <script>
+      // Hire Me Recommendations System
+      document.addEventListener('DOMContentLoaded', function() {
+        const hireModal = document.getElementById('hire-modal');
+        const hireForm = document.getElementById('modal-hire-form');
+        const closeModalBtn = document.getElementById('close-hire-modal');
+        
+        // Recommended project templates
+        const recommendations = {
+          webDesign: {
+            name: "Business Owner",
+            email: "business@example.com",
+            service: "Web Design",
+            message: `Hello Abex,
+
+I'm looking to redesign my business website to create a more modern and professional online presence. Here are my requirements:
+
+PROJECT OVERVIEW:
+- Type: Business website redesign
+- Pages needed: Home, About, Services, Portfolio, Contact
+- Style: Clean, modern, professional
+- Target audience: Local businesses and customers
+
+KEY FEATUREURES NEEDED:
+- Responsive design for all devices
+- Fast loading speed
+- SEO optimization
+- Contact forms
+- Social media integration
+- Easy content management
+
+BUDGET: $500 - $800
+TIMELINE: 2-3 weeks
+
+I'm particularly interested in your portfolio items and would love to discuss how we can make my website stand out.
+
+Best regards,
+[Your Name]`
+          },
+          
+          webDevelopment: {
+            name: "Startup Founder",
+            email: "startup@example.com",
+            service: "Web Development",
+            message: `Hello RANA,
+
+I'm building a web application for my startup and need a reliable developer to bring my vision to life.
+
+PROJECT DETAILS:
+- Type: Web application development
+- Features: User authentication, dashboard, data management
+- Technology: Modern stack (React/Node.js preferred)
+- Database: Integration needed
+- API: Third-party integrations required
+
+FUNCTIONAL REQUIREMENTS:
+- User registration/login system
+- Admin dashboard
+- Data visualization
+- Payment processing
+- Mobile responsive
+- Performance optimization
+
+BUDGET: $800 - $1500
+TIMELINE: 4-6 weeks
+
+I have some wireframes ready and would appreciate your expertise in refining the technical approach.
+
+Looking forward to discussing this project.
+
+Best regards,
+[Your Name]`
+          },
+          
+          uiuxDesign: {
+            name: "Product Manager",
+            email: "pm@example.com",
+            service: "UI/UX Design",
+            message: `Hello RANA,
+
+I need a UI/UX designer to help create an intuitive interface for our new product.
+
+PROJECT SCOPE:
+- Type: Mobile app UI/UX design
+- Platform: iOS and Android
+- Screens: 15-20 screens total
+- Style: Modern, user-friendly, accessible
+
+DELIVERABLES NEEDED:
+- User research and personas
+- Wireframes and prototypes
+- High-fidelity mockups
+- Design system/components
+- User testing recommendations
+- Handoff documentation
+
+TARGET USERS:
+- Age: 25-45
+- Tech-savvy professionals
+- Primary use: productivity/organization
+
+BUDGET: $600 - $1000
+TIMELINE: 3-4 weeks
+
+I have user stories and basic requirements documented. Would love to see your design process.
+
+Best regards,
+[Your Name]`
+          },
+          
+          computerSolutions: {
+            name: "Office Manager",
+            email: "office@example.com",
+            service: "Computer Solutions",
+            message: `Hello RANA,
+
+We need comprehensive IT solutions for our growing office.
+
+SERVICES NEEDED:
+- Network setup and security
+- Computer maintenance and support
+- Software installation and training
+- Data backup solutions
+- Cloud services setup
+- Remote support capabilities
+
+CURRENT SETUP:
+- 10-15 computers
+- Mixed Windows/Mac environment
+- Need better security protocols
+- Require regular maintenance
+
+ONGOING SUPPORT:
+- Monthly maintenance visits
+- Remote support as needed
+- Emergency support availability
+- Staff training sessions
+
+BUDGET: $400 - $800 setup + monthly support
+TIMELINE: 1-2 weeks setup, ongoing support
+
+Please provide a detailed quote for both setup and ongoing support.
+
+Best regards,
+[Your Name]`
+          }
+        };
+        
+        // Function to populate form with recommendations
+        function populateRecommendations(type) {
+          const form = document.getElementById('modal-hire-form');
+          if (!form) return;
+          
+          const rec = recommendations[type] || recommendations.webDesign;
+          
+          // Populate form fields
+          const nameInput = form.querySelector('input[type="text"]');
+          const emailInput = form.querySelector('input[type="email"]');
+          const serviceSelect = form.querySelector('select');
+          const messageTextarea = form.querySelector('textarea');
+          
+          if (nameInput) nameInput.placeholder = rec.name;
+          if (emailInput) emailInput.placeholder = rec.email;
+          if (serviceSelect) serviceSelect.value = rec.service;
+          if (messageTextarea) messageTextarea.placeholder = rec.message;
+          
+          // Add visual feedback
+          const inputs = form.querySelectorAll('input, select, textarea');
+          inputs.forEach(input => {
+            input.classList.add('border-primary', 'bg-blue-50/30');
+            setTimeout(() => {
+              input.classList.remove('border-primary', 'bg-blue-50/30');
+            }, 2000);
+          });
+        }
+        
+        // Make populateRecommendations globally available
+        window.populateRecommendations = populateRecommendations;
+        
+        // Function to open modal
+        function openHireModal(type = 'webDesign') {
+          hireModal.classList.remove('hidden');
+          populateRecommendations(type);
+        }
+        
+        // Function to close modal
+        function closeHireModal() {
+          hireModal.classList.add('hidden');
+        }
+        
+        // Event listeners for all Hire Me buttons
+        document.querySelectorAll('a[href="#contact"]').forEach(button => {
+          button.addEventListener('click', function(e) {
+            e.preventDefault();
+            openHireModal('webDesign'); // Default to web design
+          });
+        });
+        
+        // Enhanced click handlers with service detection
+        document.addEventListener('click', function(e) {
+          if (e.target.matches('a[href="#contact"]') || e.target.closest('a[href="#contact"]')) {
+            e.preventDefault();
+            
+            // Determine service type based on context
+            let serviceType = 'webDesign';
+            
+            // Check if we're in services section
+            if (e.target.closest('#services')) {
+              const serviceCard = e.target.closest('.bg-white.rounded-lg');
+              if (serviceCard) {
+                const serviceTitle = serviceCard.querySelector('h3')?.textContent?.toLowerCase();
+                if (serviceTitle?.includes('ui/ux')) serviceType = 'uiuxDesign';
+                else if (serviceTitle?.includes('development')) serviceType = 'webDevelopment';
+              }
+            }
+            
+            openHireModal(serviceType);
+          }
+        });
+        
+        // Close modal events
+        closeModalBtn.addEventListener('click', closeHireModal);
+        hireModal.addEventListener('click', function(e) {
+          if (e.target === hireModal) closeHireModal();
+        });
+        
+        // Auto-populate based on URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const service = urlParams.get('service');
+        if (service && recommendations[service]) {
+          openHireModal(service);
+        }
+      });
+    </script>
 </body>
 </html>
